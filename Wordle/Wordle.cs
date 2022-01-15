@@ -1,13 +1,13 @@
 namespace DotNETApps;
 
-public class Wordle
+internal class Wordle
 {
     private readonly string[] _corpus;
-    private HashSet<string> _guessedWords = new();
-    private readonly HashSet<char> _absent = new();
-    private readonly Dictionary<char, List<int>> _present = new();
-    private readonly char[] _correct = new char[5];
-    private HashSet<int> _guessedNumbers = new();
+    private readonly HashSet<string> _guessedWords = new();
+    private readonly HashSet<char> _absent;
+    private readonly Dictionary<char, List<int>> _present;
+    private readonly char[] _correct;
+    private readonly HashSet<int> _guessedNumbers = new();
 
     public Wordle(HashSet<char> absent, Dictionary<char, List<int>> present, char[] correct)
     {
@@ -52,9 +52,6 @@ public class Wordle
 
     bool KeepTheLetter(char letter, int index)
     {
-        // if (_correctLetters!.Contains(letter))
-        //     return true;
-
         if (!_present!.ContainsKey(letter))
             return !_absent!.Contains(letter);
 
