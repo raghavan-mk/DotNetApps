@@ -1,33 +1,32 @@
-﻿using System.Globalization;
-using System.Net.Mime;
-using static System.Console;
+﻿using static System.Console;
 
-var input = "stare";
+var absent = new HashSet<char>
+{
+    't', 'e', 'b', 'i', 'f', 'n'
+};
 
-var absent = new HashSet<char>();
-absent.Add('s');
-absent.Add('t');
-absent.Add('r');
-absent.Add('e');
-absent.Add('m');
-absent.Add('l');
-var present = new Dictionary<char, List<int>>();
-present.Add('a', new List<int> {0, 2});
+var present = new Dictionary<char, List<int>>
+{
+    {'a', new List<int> {2}},
+    {'r', new List<int> {3}}
+};
 
 var correct = new char[5];
-correct[1] = 'a';
-correct[3] = 'i';
-correct[4] = 'c';
-Play();
+correct[0] = 's';
+correct[1] = 'o';
+correct[3] = 'a';
+correct[4] = 'r';
+Guess();
 
-void Play()
+void Guess()
 {
     var nextWordIsGuessed = false;
     var count = 0;
     var wordle = new DotNETApps.Wordle(absent!, present!, correct!);
     wordle.SetGuessedWords("stare");
-    wordle.SetGuessedWords("aulic");
-    wordle.SetGuessedWords("malic");
+    wordle.SetGuessedWords("sabir");
+    wordle.SetGuessedWords("sofar");
+    wordle.SetGuessedWords("sonar");
     while (!nextWordIsGuessed && count < 12972)
     {
         nextWordIsGuessed = wordle.TryGetNextWord(out var nextWord);

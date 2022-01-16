@@ -31,11 +31,10 @@ internal class Wordle
         if (_guessedWords.Contains(nextGuess))
             return false;
 
-        if (nextGuess.Where((t, i) => !KeepTheLetter(t, i)).Any())
-            return false;
-
         _guessedWords.Add(nextGuess);
-        return KeepTheWord(nextGuess);
+        
+        return !nextGuess.Where((t, i) => 
+            !KeepTheLetter(t, i)).Any() && KeepTheWord(nextGuess);
     }
 
     bool KeepTheWord(string word)
@@ -70,17 +69,4 @@ internal class Wordle
     }
     
     public void SetGuessedWords(string word) => _guessedWords.Add(word);
-}
-
-internal static class Corpus
-{
-    private static readonly string[] Words;
-
-    static Corpus()
-    {
-        Words = File.ReadAllText("corpus.txt").Split(',')
-            .Select(w => w.Replace("\"", "").Trim()).ToArray();
-    }
-
-    public static string[] GetCorpus() => Words;
 }
