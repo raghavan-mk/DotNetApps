@@ -37,13 +37,14 @@ internal class Wordle
             !KeepTheLetter(t, i)).Any() && KeepTheWord(nextGuess);
     }
 
+    // Choose the guessed word has both all the previously correctly guessed and present letters 
     bool KeepTheWord(string word)
     {
-        //ensure all correct letters are present
+        // ensure all correct letters are present
         if (_correct.Where((c, i) => c != '\0' && word.IndexOf(c) != i).Any())
             return false;
 
-        //ensure all present letters are present
+        // ensure all present letters are present
         return _present.Keys.All(word.Contains);
     }
 

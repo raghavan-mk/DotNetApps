@@ -5,13 +5,11 @@
         <TargetFramework>net6.0</TargetFramework>
         <ImplicitUsings>enable</ImplicitUsings>
         <Nullable>enable</Nullable>
-        <RootNamespace>DotNETApps</RootNamespace>
+        <RootNamespace>AutomateWordle</RootNamespace>
     </PropertyGroup>
 
     <ItemGroup>
-      <None Update="Corpus.txt">
-        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
-      </None>
+      <PackageReference Include="PuppeteerSharp" Version="6.1.0" />
     </ItemGroup>
 
 </Project>

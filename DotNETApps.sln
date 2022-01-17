@@ -1,8 +1,8 @@
 ﻿
 Microsoft Visual Studio Solution File, Format Version 12.00
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "Wordle", "Wordle\Wordle.csproj", "{33C7CB1C-EE20-48EE-99CF-E0B099CD24E4}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WordleConsole", "WordleConsole\WordleConsole.csproj", "{33C7CB1C-EE20-48EE-99CF-E0B099CD24E4}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "AutomateWordle", "AutomateWordle\AutomateWordle.csproj", "{627685FB-0F2F-40BD-A9DA-F8D083AF2026}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "WordleWeb", "WordleWeb\WordleWeb.csproj", "{627685FB-0F2F-40BD-A9DA-F8D083AF2026}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
