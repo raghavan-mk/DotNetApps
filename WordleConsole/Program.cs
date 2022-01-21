@@ -1,4 +1,5 @@
-﻿using static System.Console;
+﻿using WordleLib;
+using static System.Console;
 
 var absent = new HashSet<char>
 {
@@ -15,20 +16,20 @@ correct[1] = 'r';
 correct[2] = 'i';
 // correct[3] = 'r';
 // correct[4] = 'e';
-Guess();
-
-void Guess()
-{
-    var wordIsGuessed = false;
-    var count = 0;
-    var wordle = new DotNETApps.Wordle(correct!, absent!, present!);
-    wordle.SetGuessedWords("stare");
-    wordle.SetGuessedWords("druid");
-    wordle.SetGuessedWords("primp");
-    wordle.SetGuessedWords("prill");
-    while (!wordIsGuessed && count < 12972)
-    {
-        wordIsGuessed = wordle.TryGetNextWord(out var nextWord);
-        WriteLine($"{count++}:{nextWord}");
-    }
-}
+// Guess();
+//
+// void Guess()
+// {
+//     var wordIsGuessed = false;
+//     var count = 0;
+//     var wordle = new Wordle(correct!, absent!, present!);
+//     wordle.SetGuessedWords("stare");
+//     wordle.SetGuessedWords("druid");
+//     wordle.SetGuessedWords("primp");
+//     wordle.SetGuessedWords("prill");
+//     while (!wordIsGuessed && count < 12972)
+//     {
+//         wordIsGuessed = wordle.TryGetNextWord(out var nextWord);
+//         WriteLine($"{count++}:{nextWord}");
+//     }
+// }

@@ -13,18 +13,19 @@ public static class Helper
                                                    $"shadowRoot.querySelector(\"div > game-tile:nth-child({cell})\")." +
                                                    "shadowRoot.querySelector(\"div\")).getPropertyValue(\"background-color\")");
 
-    private static int[] ParseRgb(string color) =>
-        Regex.Split(color, @"rgb\((\d{1,3}),\s*(\d{1,3}),\s*(\d{1,3})\)")
+    public static string ParseRgb(string color)
+    {
+        var rgb = Regex.Split(color, @"rgb\((\d{1,3}),\s*(\d{1,3}),\s*(\d{1,3})\)")
             .Where(c => c != "") // for some reason spaces were added too so we need to remove them
             .Select(int.Parse)
             .ToArray();
+        return GetColorCode(rgb);
+    }
 
-    private static string GetColorCode(IReadOnlyList<int> rgb) => Color.FromArgb(rgb[0], rgb[1], rgb[2]).Name;
+    public static string GetColorCode(IReadOnlyList<int> rgb) => Color.FromArgb(rgb[0], rgb[1], rgb[2]).Name;
 
-    public static char EvalColorCode(string rgbColor)
+    public static char EvalColorCode(string color)
     {
-        var rgb = ParseRgb(rgbColor);
-        var color = GetColorCode(rgb);
         return color switch
         {
             // color code shows up differently when run in headless and non-headless mode

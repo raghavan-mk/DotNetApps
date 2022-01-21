@@ -1,4 +1,4 @@
-namespace DotNETApps;
+namespace WordleLib;
 
 internal static partial class Corpus
 {

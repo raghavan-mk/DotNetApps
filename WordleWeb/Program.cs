@@ -1,11 +1,7 @@
-﻿using PuppeteerSharp;
+﻿using AutomateWordle;
+using PuppeteerSharp;
 using PuppeteerSharp.Input;
-using System.Drawing;
-using System.Globalization;
-using System.Text.RegularExpressions;
-using AutomateWordle;
-using DotNETApps;
-using static System.Console;
+using WordleLib;
 
 await new BrowserFetcher().DownloadAsync();
 var browser = await Puppeteer.LaunchAsync(new LaunchOptions
@@ -19,65 +15,68 @@ var element = await page.WaitForSelectorAsync("body > game-app");
 await element.ClickAsync();
 
 var currentWord = "stare";
-
-await page.TypeAsync("body > game-app", currentWord);
-await page.Keyboard.PressAsync(Key.Enter);
-await Task.Delay(1500);
-var row = 1;
-
 List<string> colors = new();
+var wordle = new Wordle(currentWord);
+
 for (var i = 1; i < 6; i++)
 {
-    var rgb = await Helper.GetColor(page, row, i);
-    colors.Add(rgb);
-}
+    await page.TypeAsync("body > game-app", currentWord);
+    await page.Keyboard.PressAsync(Key.Enter);
+    await Task.Delay(1500);
 
+    for (var j = 1; j < 6; j++)
+    {
+        var rgb = await Helper.GetColor(page, i, j);
+        colors.Add(Helper.ParseRgb(rgb));
+    }
+
+    if (!colors.All(c => c is "ff538d4e" or "ff6aaa64"))
+        GetNextWord();
+    else
+    {
+        Console.WriteLine("Completed");
+        break;
+    }
+
+    colors.Clear();
+}
+await Task.Delay(1000);
 await page.CloseAsync();
 
-var absent = new HashSet<char>();
-var present = new Dictionary<char, List<int>>();
-var correct = new char[5];
-
-for (var i = 0; i < colors.Count; i++)
+void GetNextWord()
 {
-    var c = Helper.EvalColorCode(colors[i]);
-    var cl = currentWord[i];
-    switch (c)
+    for (var i = 0; i < colors.Count; i++)
     {
-        case 'c':
-            correct[i] = cl;
-            break;
-        case 'a' when !correct.Contains(cl)
-                      && !absent.Contains(cl):
-            absent.Add(cl);
-            break;
-        case 'p':
+        var c = Helper.EvalColorCode(colors[i]);
+        var cl = currentWord[i];
+        switch (c)
         {
-            if (!present.ContainsKey(cl))
-                present.Add(cl, new List<int> {i});
-            present[c].Add(i);
-            break;
+            case 'c':
+                wordle.Correct[i] = cl;
+                break;
+            case 'a' when !wordle.Correct.Contains(cl)
+                          && !wordle.Absent.Contains(cl):
+                wordle.Absent.Add(cl);
+                break;
+            case 'p':
+            {
+                if (!wordle.Present.ContainsKey(cl))
+                    wordle.Present.Add(cl, new List<int> {i});
+                else
+                    wordle.Present[cl].Add(i);
+                break;
+            }
         }
     }
+    
+    var wordIsGuessed = false;
+    var count = 0;
+    while (!wordIsGuessed && count < 12792)
+    {
+        wordIsGuessed = wordle.TryGetNextWord(out currentWord);
+        Console.WriteLine($"{count++}:{currentWord}");
+    }
 }
-
-var w = new Wordle(correct, absent, present);
-w.SetGuessedWords(currentWord);
-var wordIsGuessed = false;
-var count = 0;
-while (wordIsGuessed && count < 12792)
-{
-    wordIsGuessed = w.TryGetNextWord(out currentWord);
-    WriteLine($"{count++}:{currentWord}");
-}
-
-
-// async Task<string> GetText(int row, int cell) =>
-//     await page.EvaluateExpressionAsync<string>($"document.querySelector(\"body > game-app\")." +
-//                                                $"shadowRoot.querySelector(\"#board > game-row:nth-child({row})\")." +
-//                                                $"shadowRoot.querySelector(\"div > game-tile:nth-child({cell})\")." +
-//                                                "shadowRoot.querySelector(\"div\").innerText");
-
 
 // ff538d4e C
 // ff3a3a3c A
