@@ -2,6 +2,7 @@
 using PuppeteerSharp;
 using PuppeteerSharp.Input;
 using WordleLib;
+using static System.Console;
 
 await new BrowserFetcher().DownloadAsync();
 var browser = await Puppeteer.LaunchAsync(new LaunchOptions
@@ -21,6 +22,7 @@ var wordle = new Wordle(currentWord);
 for (var i = 1; i < 6; i++)
 {
     await page.TypeAsync("body > game-app", currentWord);
+    WriteLine($"{currentWord}");
     await page.Keyboard.PressAsync(Key.Enter);
     await Task.Delay(1500);
 
@@ -71,10 +73,10 @@ void GetNextWord()
     
     var wordIsGuessed = false;
     var count = 0;
-    while (!wordIsGuessed && count < 12792)
+    while (!wordIsGuessed && count++ < 12792)
     {
         wordIsGuessed = wordle.TryGetNextWord(out currentWord);
-        Console.WriteLine($"{count++}:{currentWord}");
+        // WriteLine($"{count++}:{currentWord}");
     }
 }
 

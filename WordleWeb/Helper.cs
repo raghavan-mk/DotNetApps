@@ -24,15 +24,12 @@ public static class Helper
 
     public static string GetColorCode(IReadOnlyList<int> rgb) => Color.FromArgb(rgb[0], rgb[1], rgb[2]).Name;
 
-    public static char EvalColorCode(string color)
+    public static char EvalColorCode(string color) => color switch
     {
-        return color switch
-        {
-            // color code shows up differently when run in headless and non-headless mode
-            "ff538d4e" or "ff6aaa64" => 'c',
-            "ff3a3a3c" or "ff787c7e" => 'a',
-            "ffb59f3b" or "ffc9b458" => 'p',
-            _ => throw new ArgumentOutOfRangeException(nameof(color), color, null)
-        };
-    }
+        // color code shows up differently when run in headless and non-headless mode
+        "ff538d4e" or "ff6aaa64" => 'c',
+        "ff3a3a3c" or "ff787c7e" => 'a',
+        "ffb59f3b" or "ffc9b458" => 'p',
+        _ => throw new ArgumentOutOfRangeException(nameof(color), color, null)
+    };
 }
