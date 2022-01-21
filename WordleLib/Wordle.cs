@@ -1,6 +1,6 @@
 namespace DotNETApps;
 
-internal class Wordle
+public class Wordle
 {
     private readonly string[] _corpus;
     private readonly HashSet<string> _guessedWords = new();
@@ -14,7 +14,7 @@ internal class Wordle
     
     private readonly HashSet<int> _guessedNumbers = new();
 
-    public Wordle(HashSet<char> absent, Dictionary<char, List<int>> present, char[] correct)
+    public Wordle(char[] correct, HashSet<char> absent, Dictionary<char, List<int>> present )
     {
         _corpus = Corpus.GetCorpus();
         _absent = absent;
