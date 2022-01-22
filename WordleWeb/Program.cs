@@ -1,10 +1,11 @@
 ﻿using PuppeteerSharp;
 using PuppeteerSharp.Input;
-using WordleLib;
+using Spectre.Console;
+using WordleWeb;
 using static System.Console;
 
 const string wordleUrl = "https://www.powerlanguage.co.uk/wordle/";
-var headless = false;
+var headless = true;
 var currentWord = "stare";
 
 var cmdLineArgs = Environment.GetCommandLineArgs();
@@ -18,10 +19,14 @@ if (cmdLineArgs.Length > 1)
         }
         if(c.StartsWith("-w="))
         {
-            currentWord = c.Split('=')[1];
+            if(c.Split('=')[1].Length == 5)
+            {
+                currentWord = c.Split('=')[1];
+            }
         }
     });
 }
+
 
 await new BrowserFetcher().DownloadAsync();
 await using var browser = await Puppeteer.LaunchAsync(new LaunchOptions
@@ -29,23 +34,26 @@ await using var browser = await Puppeteer.LaunchAsync(new LaunchOptions
     Headless = headless
 });
 
+var output = new Output();
+output.OutputInAscii("Wordle");
+
 await using var page = await browser.NewPageAsync();
 await page.GoToAsync(wordleUrl);
 var element = await page.WaitForSelectorAsync("body > game-app");
 await element.ClickAsync();
 
 
-List<string> colors = new();
+List<string> colors = new(5);
 var wordle = new Wordle(currentWord);
 var completed = false;
 var attempt = 0;
+
 
 // number of attempts to find a word - 6 is the max
 // also means to increment the row count by 1 to read next word
 for (var i = 1; i < 7; i++) 
 {
     await page.TypeAsync("body > game-app", currentWord);
-    WriteLine($"{currentWord}");
     await page.Keyboard.PressAsync(Key.Enter);
     await Task.Delay(1500); // delay to allow the word to be typed and get the colors of the word
 
@@ -55,7 +63,7 @@ for (var i = 1; i < 7; i++)
         await Task.Delay(100);
         colors.Add(Helper.ParseRgb(rgb));
     }
-
+    output.Addrow(currentWord,colors);
     // dark and non-dark mode   
     if (!colors.All(c => c is "ff538d4e" or "ff6aaa64")) 
         GetNextWord();
@@ -72,16 +80,15 @@ for (var i = 1; i < 7; i++)
 
 if (completed)
 {
-    WriteLine($"Guessed {currentWord} in {attempt} attempts");
-    WriteLine($"{Helper.GetAppreciation(attempt-1)}!");
+    output.OutputInAscii($"{Helper.GetAppreciation(attempt - 1)}!");
 }
 else
 {
-    WriteLine("Could not find the word");
+    AnsiConsole.Write(new Markup($"$[bold red]Could not find the word[/]"));
+    WriteLine();
     var wordleOfTheDay = await Helper.GetWordleSln(page);
-    WriteLine($"Solution: {wordleOfTheDay}");
+    AnsiConsole.Write(new Markup($"[bold yellow]Solution[/]: [bold green]{wordleOfTheDay}[/]"));
 }
-
 
 await page.CloseAsync();
 

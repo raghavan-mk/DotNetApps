@@ -1,4 +1,4 @@
-namespace WordleLib;
+namespace WordleWeb;
 
 public class Wordle
 {

@@ -1,4 +1,4 @@
-namespace WordleLib;
+namespace WordleWeb;
 
 internal static partial class Corpus
 {

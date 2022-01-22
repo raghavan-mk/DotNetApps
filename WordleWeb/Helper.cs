@@ -1,8 +1,9 @@
-using System.Drawing;
 using System.Text.RegularExpressions;
 using PuppeteerSharp;
+using Spectre.Console;
+using Color = System.Drawing.Color;
 
-namespace WordleLib;
+namespace WordleWeb;
 
 public static class Helper
 {
@@ -28,7 +29,8 @@ public static class Helper
         return GetColorCode(rgb);
     }
 
-    public static string GetColorCode(IReadOnlyList<int> rgb) => Color.FromArgb(rgb[0], rgb[1], rgb[2]).Name;
+    public static string GetColorCode(IReadOnlyList<int> rgb) => 
+        Color.FromArgb(rgb[0], rgb[1], rgb[2]).Name;
 
     public static char EvalColorCode(string color) => color switch
     {
@@ -40,5 +42,5 @@ public static class Helper
         _ => throw new ArgumentOutOfRangeException(nameof(color), color, null)
     };
 
-    public static string GetAppreciation(int attempt) => Appreciations[attempt];
+    public static string GetAppreciation(int attempt) => Appreciations[attempt] + Emoji.Known.StarStruck;
 }

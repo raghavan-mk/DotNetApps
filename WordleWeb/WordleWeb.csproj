@@ -10,10 +10,20 @@
 
     <ItemGroup>
       <PackageReference Include="PuppeteerSharp" Version="6.1.0" />
+      <PackageReference Include="Spectre.Console" Version="0.43.0" />
     </ItemGroup>
 
     <ItemGroup>
       <ProjectReference Include="..\WordleLib\WordleLib.csproj" />
+    </ItemGroup>
+
+    <ItemGroup>
+      <None Update="chunky.flf">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </None>
+      <None Update="Corpus.txt">
+        <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
+      </None>
     </ItemGroup>
 
 </Project>
