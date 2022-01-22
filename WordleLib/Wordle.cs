@@ -4,13 +4,13 @@ public class Wordle
 {
     private readonly string[] _corpus;
     private readonly HashSet<string> _guessedWords = new();
-    public HashSet<char> Absent { get; set; } = new();
+    public HashSet<char> Absent { get; } = new();
 
     //letters present but not in right position
-    public Dictionary<char, List<int>> Present { get; set; }= new();
+    public Dictionary<char, List<int>> Present { get; }= new();
 
     //letters present and in right position
-    public char[] Correct { get; set; } = new char[5];
+    public char[] Correct { get; } = new char[5];
 
     private readonly HashSet<int> _guessedNumbers = new();
 
