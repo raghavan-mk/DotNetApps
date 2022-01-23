@@ -1,9 +1,15 @@
 
-### Wordle Automation
+## Wordle Automation
 
 FWIW, I too got nerd swiped by one and all who were automating [Wordle](https://www.powerlanguage.co.uk/wordle/).
 
 And here is a version of mine.
+
+### Table of contents
+[Install](#install)
+
+#### Install
+
 
 Run it as 
 

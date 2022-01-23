@@ -69,7 +69,4 @@ public class Wordle
         _guessedNumbers.Add(nxtNumber);
         return nxtNumber;
     }
-
-    
-   
 }
