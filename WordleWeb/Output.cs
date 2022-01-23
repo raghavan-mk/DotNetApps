@@ -14,7 +14,7 @@ public class Output
             Border = TableBorder.Ascii
         }.HideHeaders();
         _table.AddColumns("", "", "", "", "");
-        _font = FigletFont.Load("chunky.flf");
+        _font = FigletFont.Load(@"assets/chunky.flf");
     }
 
     public void Addrow(string word, List<string> color)

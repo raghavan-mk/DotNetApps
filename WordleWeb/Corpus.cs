@@ -6,7 +6,7 @@ internal static partial class Corpus
 
     static Corpus()
     {
-        Words = File.ReadAllText("corpus.txt").Split(',')
+        Words = File.ReadAllText(@"assets/corpus.txt").Split(',')
             .Select(w => w.Replace("\"", "").Trim()).ToArray();
     }
 

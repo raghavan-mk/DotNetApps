@@ -14,14 +14,10 @@
     </ItemGroup>
 
     <ItemGroup>
-      <ProjectReference Include="..\WordleLib\WordleLib.csproj" />
-    </ItemGroup>
-
-    <ItemGroup>
-      <None Update="chunky.flf">
+      <None Update="Assets\chunky.flf">
         <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       </None>
-      <None Update="Corpus.txt">
+      <None Update="Assets\Corpus.txt">
         <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       </None>
     </ItemGroup>
