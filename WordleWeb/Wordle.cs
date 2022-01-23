@@ -61,15 +61,15 @@ public class Wordle
 
     //returns a random number between 0 and corpus.length 
     //which is not in the guessedNumbers
-    // int GetNextRandomNumber()
-    // {
-    //     var nxtNumber = new Random().Next(0, 12972);
-    //     if (_guessedNumbers.Contains(nxtNumber))
-    //         return GetNextRandomNumber();
-    //     _guessedNumbers.Add(nxtNumber);
-    //     return nxtNumber;
-    // }
+    int GetNextRandomNumber()
+    {
+        var nxtNumber = new Random().Next(0, 12972);
+        if (_guessedNumbers.Contains(nxtNumber))
+            return GetNextRandomNumber();
+        _guessedNumbers.Add(nxtNumber);
+        return nxtNumber;
+    }
 
-    private static int GetNextRandomNumber() => new Random().Next(0, 12972);
+    
    
 }
