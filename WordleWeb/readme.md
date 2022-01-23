@@ -11,7 +11,7 @@ Run it as
 
 And we should see output similar to this -
 
-![img.png](img.png)
+![img.png](/assets/img.png)
 
 WordleWeb program tries to mimic user actions by automating the guesses and interacting with the website.
 
