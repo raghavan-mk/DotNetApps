@@ -9,7 +9,10 @@
     </PropertyGroup>
 
     <ItemGroup>
-      <PackageReference Include="PuppeteerSharp" Version="6.1.0" />
+      <PackageReference Include="Microsoft.Bcl.AsyncInterfaces" Version="6.0.2-mauipre.1.22054.8" />
+      <PackageReference Include="Microsoft.Extensions.Logging" Version="6.0.2-mauipre.1.22054.8" />
+      <PackageReference Include="Microsoft.Extensions.Logging.Abstractions" Version="6.0.2-mauipre.1.22054.8" />
+      <PackageReference Include="Newtonsoft.Json" Version="13.0.1" />
       <PackageReference Include="Spectre.Console" Version="0.43.0" />
     </ItemGroup>
 
@@ -20,6 +23,12 @@
       <None Update="Assets\Corpus.txt">
         <CopyToOutputDirectory>PreserveNewest</CopyToOutputDirectory>
       </None>
+    </ItemGroup>
+
+    <ItemGroup>
+      <Reference Include="PuppeteerSharp, Version=6.1.0.0, Culture=neutral, PublicKeyToken=db12f80f85d8ba23">
+        <HintPath>Ref\PuppeteerSharp.dll</HintPath>
+      </Reference>
     </ItemGroup>
 
 </Project>

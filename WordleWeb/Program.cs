@@ -27,21 +27,33 @@ if (cmdLineArgs.Length > 1)
     });
 }
 
+var browserFetcher = new BrowserFetcher();
+browserFetcher.DownloadProgressChanged += (sender, args) =>
+{
+    AnsiConsole.Markup($"\r [bold green] Downloading Chromium Driver[/] [bold red]{args.ProgressPercentage}%[/]");
+};
 
-await new BrowserFetcher().DownloadAsync();
+await browserFetcher.DownloadAsync();
 await using var browser = await Puppeteer.LaunchAsync(new LaunchOptions
 {
     Headless = headless
 });
 
+Clear();
 var output = new Output();
 output.OutputInAscii("Wordle");
 
 await using var page = await browser.NewPageAsync();
 await page.GoToAsync(wordleUrl);
-var element = await page.WaitForSelectorAsync("body > game-app");
-await element.ClickAsync();
 
+var element = await
+    page.EvaluateExpressionHandleAsync(
+        "document.querySelector(\"body > game-app\").shadowRoot.querySelector(\"#game > game-modal\")" +
+        ".shadowRoot.querySelector(\"div > div > div > game-icon\")" +
+        ".shadowRoot.querySelector(\"svg\")") as ElementHandle;
+
+await Task.Delay(100);
+await element?.ClickAsync()!;
 
 List<string> colors = new(5);
 var wordle = new Wordle(currentWord);
@@ -84,10 +96,10 @@ if (completed)
 }
 else
 {
-    AnsiConsole.Write(new Markup($"$[bold red]Could not find the word[/]"));
+    AnsiConsole.Write(new Markup($"[bold red]Could not find the word[/]"));
     WriteLine();
     var wordleOfTheDay = await Helper.GetWordleSln(page);
-    AnsiConsole.Write(new Markup($"[bold yellow]Solution[/]: [bold green]{wordleOfTheDay}[/]"));
+    AnsiConsole.Write(new Markup($"[bold yellow]Solution[/] [bold green]{wordleOfTheDay}[/]"));
 }
 
 await page.CloseAsync();
