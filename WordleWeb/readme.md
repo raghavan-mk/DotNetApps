@@ -1,19 +1,19 @@
 
-## Wordle Automation
+# Wordle Automation
 
 FWIW, I too got nerd swiped by one and all who were automating [Wordle](https://www.powerlanguage.co.uk/wordle/).
 
 And here is a version of mine.
 
-### Table of contents
+## Table of contents
 [Install](#install)\
 [Running](#running)\
 [Usage](#usage)\
-[Known Issues](#known issues)\
+[Known Issues](#knownissues)\
 [Screenshot](#screenshot)\
 [Algorithm](#algorithm)
 
-#### Install
+## Install
 
 Installation is just about downloading the binaries and running them. 
 
@@ -26,23 +26,23 @@ If you already have .NET6 installed, then you can download a much smaller sized 
 [Portable](https://github.com/raghavan-mk/DotNetApps/releases/download/v1.0.0.0/WordleWeb.zip)
 This runs both on Windows as well as OSX
 
-#### Running
+## Running
 
 If you have downloaded platform specific binaries, then you can run them as
 
-##### Windows
+#### Windows
 
 1. Unzip the binaries
 2. Go to the folder - win-x64/win-x64
 3. Run the executable - WordleWeb.exe
 
-##### OSX
+#### OSX
 
 1. Unzip the binaries
 2. Go to the folder - osx-x64
 3. Run the executable - .\WordleWeb
 
-##### Portable
+#### Portable
 
 1. Unzip the binaries
 2. Go to the folder - WordleWeb
@@ -51,30 +51,30 @@ If you have downloaded platform specific binaries, then you can run them as
 
 **Note**: When the application is run for the first time, it will download chrome driver
 
-#### Usage
+## Usage
 
 By default the start word it uses is **stare** To override this we can do, as shown below.
 First options is for portable, second is for OSX and third is for Windows
 
-**dotnet wordleweb.dll -w=split** or
-**./wordleweb.exe -w=split** or
-**wordleweb.exe -w=split**
+**dotnet wordleweb.dll -w=split** or\
+**./wordleweb.exe -w=split** or\
+**wordleweb.exe -w=split**\
 
 Now the program starts the guesses with split as the first word
 
 Also by default the program runs in headless mode. This can be overridden by setting 
 
-**dotnet wordleweb.dll -h=false** or
-**./wordleweb.exe -h=false** or
-**wordleweb.exe -h=false**
+**dotnet wordleweb.dll -h=false** or\
+**./wordleweb.exe -h=false** or\
+**wordleweb.exe -h=false**\
 
 Both the options can be overridden in single command
 
-**dotnet wordleweb.dll -h=false -w=split**
-**./wordleweb.exe -h=false -w=split**
-**wordleweb.exe -h=false -w=split**
+**dotnet wordleweb.dll -h=false -w=split**\
+**./wordleweb.exe -h=false -w=split**\
+**wordleweb.exe -h=false -w=split**\
 
-#### Known Issues
+## Known Issues
 
 1. We may see application crash with some kind of crazy stack overflow errors :(
 2. Rerun the application and it will be fine
@@ -82,13 +82,13 @@ Both the options can be overridden in single command
 4. Terrible coding :D 
 5. Will fix them all sometime later :) 
 
-#### Screenshot
+## Screenshot
 
 Application when run fine looks like this
 
 ![img](https://github.com/raghavan-mk/DotNetApps/blob/main/WordleWeb/Assets/img.png?raw=true)
 
-#### Algorithm
+## Algorithm
 
 Well, brute forced it :D
 
