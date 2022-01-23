@@ -9,7 +9,7 @@ And here is a version of mine.
 [Install](#install)\
 [Running](#running)\
 [Usage](#usage)\
-[Known Issues](#knownissues)\
+[Known Issues](#known-issues)\
 [Screenshot](#screenshot)\
 [Algorithm](#algorithm)
 
