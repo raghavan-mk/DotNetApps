@@ -11,7 +11,7 @@ Run it as
 
 And we should see output similar to this -
 
-![img.png](/assets/img.png)
+![img.png](https://github.com/raghavan-mk/DotNetApps/blob/main/WordleWeb/Assets/img.png?raw=true)
 
 WordleWeb program tries to mimic user actions by automating the guesses and interacting with the website.
 
