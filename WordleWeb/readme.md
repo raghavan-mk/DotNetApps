@@ -40,7 +40,7 @@ If you have downloaded platform specific binaries, then you can run them as
 
 1. Unzip the binaries
 2. Go to the folder - osx-x64
-3. Run the executable - .\WordleWeb
+3. Run the executable - ./WordleWeb
 
 #### Portable
 
@@ -57,7 +57,7 @@ By default the start word it uses is **stare** To override this we can do, as sh
 First options is for portable, second is for OSX and third is for Windows
 
 **dotnet wordleweb.dll -w=split** or\
-**./wordleweb.exe -w=split** or\
+**./wordleweb -w=split** or\
 **wordleweb.exe -w=split**\
 
 Now the program starts the guesses with split as the first word
@@ -65,13 +65,13 @@ Now the program starts the guesses with split as the first word
 Also by default the program runs in headless mode. This can be overridden by setting 
 
 **dotnet wordleweb.dll -h=false** or\
-**./wordleweb.exe -h=false** or\
+**./wordleweb -h=false** or\
 **wordleweb.exe -h=false**\
 
 Both the options can be overridden in single command
 
 **dotnet wordleweb.dll -h=false -w=split**\
-**./wordleweb.exe -h=false -w=split**\
+**./wordleweb -h=false -w=split**\
 **wordleweb.exe -h=false -w=split**\
 
 ## Known Issues
