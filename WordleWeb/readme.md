@@ -17,13 +17,12 @@ And here is a version of mine.
 
 Installation is just about downloading the binaries and running them. 
 
-Download binaries for [Windows](https://github.com/raghavan-mk/DotNetApps/releases/download/v1.0.0.0/win-x64.zip)
+Download binaries for [Windows](https://github.com/raghavan-mk/DotNetApps/releases/download/v1.0.0.0/win-x64.zip) \
 Download binaries for [OSX](https://github.com/raghavan-mk/DotNetApps/releases/download/v1.0.0.0/osx-x64.zip)
 
 Note the above binaries are self contained, so you don't need to install anything else.
 
-If you already have .NET6 installed, then you can download a much smaller sized binary
-[Portable](https://github.com/raghavan-mk/DotNetApps/releases/download/v1.0.0.0/WordleWeb.zip)
+If you already have .NET6 installed, then you can download a much smaller sized [binary](https://github.com/raghavan-mk/DotNetApps/releases/download/v1.0.0.0/WordleWeb.zip) \
 This runs both on Windows as well as OSX
 
 ## Running
